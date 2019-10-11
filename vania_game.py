@@ -11,25 +11,6 @@ from game.main_menu import MainMenu
 from game.camera import Camera
 from game.fps_counter import FPSCounter
 from game.ui_player_health_bar import UIPlayerHealthBar
-"""
-CHALLENGE 1
------------
-
-Your first challenge is to add some water tiles to the game in a believable fashion.
-You will need to use the map editor accessible from the game's main menu.
-
-The water tiles are designed to be positioned as a 'pool' in between two wall tiles.
-I've left a suitable spot for a pool of water on the top half of the map about half-way along, or you can make your own.
-
-In the second challenge we will make colliding with the water slow the player's movement over in the player.py file.
-
-ADDITIONAL INFO
----------------
-- You may also want to take a look at the tile data files which define game data and which image to use for each type of 
-  tile. They are accessible under 'data/tiles' in the Project view pane on the left hand side of the PyCharm editor. 
-  
-NEXT: Head to player.py, line 265.
-"""
 
 
 class VaniaGame:

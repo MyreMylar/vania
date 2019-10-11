@@ -123,7 +123,6 @@ class Player(pygame.sprite.Sprite):
         self.air_acceleration = 500.0
         self.attack_slide_top_speed = 1400.0
         self.attack_slide_acceleration = 3000.0
-        self.speed_multiplier = 1.0
 
         self.climb_acceleration = 600.0
         self.climb_top_speed = 300.0
@@ -262,14 +261,38 @@ class Player(pygame.sprite.Sprite):
     def update(self, time_delta, gravity, camera):
         # react to collision stuff
         self.in_climb_position = False
-        self.speed_multiplier = 1.0
         floor_collided_this_frame = False
         in_exit_door_position = False
         if len(self.triggers_collision_shape.collided_shapes_this_frame) > 0:
             for shape in self.triggers_collision_shape.collided_shapes_this_frame:
-                if shape.game_type == CollisionType.WATER:
-                    self.speed_multiplier = 0.5
-                elif shape.game_type == CollisionType.LADDERS:
+                """
+                CHALLENGE 2
+                -----------
+                
+                By now you should have added a new water tile to the game and placed some of it in the editor.
+                In this step we will detect when the player is touching the water tiles and slow down their
+                movement so we appear to 'wade' when in the water.
+                
+                You will also want to disable this effect when we are not touching water.
+                
+                HINTS
+                ------
+                
+                - Look at the two if statements below. You will need to make something similar for
+                  the CollisionType.WATER.
+                - We will need to reduce the speed of our player by adjusting their acceleration and top speed values.
+                  There are lots of different speed and acceleration values used here for different movements; it is 
+                  likely a good idea to define a 'speed_multiplier' variable that defaults to 1.0. That way we can 
+                  multiply our final speed by the multiplier and adjust all the different movements by the same factor
+                - Somewhere in this function, further down on line 388-ish, there is some code where the player's 
+                  horizontal velocity (self.velocity[0]) is set to the current move_speed. This is a good place to
+                  multiply the move speed by our speed multiplier.
+                - We need to set the speed multiplier to 1.0 when *not* colliding with water (set it at the top of this
+                  function before we test for any collisions) and to something like 0.5 when we detect a collision just
+                  below.
+                  
+                """
+                if shape.game_type == CollisionType.LADDERS:
                     self.in_climb_position = True
                     self.found_ladder_position = [shape.x, shape.y]
 
@@ -362,7 +385,7 @@ class Player(pygame.sprite.Sprite):
             else:
                 self.update_jumping(time_delta, camera)
 
-            self.velocity[0] = self.move_speed  * self.speed_multiplier  # A good place to add a move speed multiplier
+            self.velocity[0] = self.move_speed  # A good place to add a move speed multiplier
 
         # if attack is interrupted make sure we kill attack shape
         if not (self.motion_state == "attack" or self.motion_state == "jump_attack"):

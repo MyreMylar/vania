@@ -1,0 +1,4 @@
+isCollidable,1
+tileImageCoords,1,0
+rect,2,0,64,64
+collision_type,world_platform_edge

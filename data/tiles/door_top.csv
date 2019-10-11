@@ -1,0 +1,4 @@
+isCollidable,1
+tileImageCoords,7,0
+rect,8,32,56,64
+collision_type,door

@@ -1,0 +1,4 @@
+isCollidable,1
+tileImageCoords,4,1
+rect,0,32,64,64
+collision_type,water

@@ -1,0 +1,4 @@
+isCollidable,1
+tileImageCoords,4,0
+rect,0,0,64,23
+collision_type,world_jump_through

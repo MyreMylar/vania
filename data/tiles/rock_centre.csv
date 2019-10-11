@@ -1,0 +1,4 @@
+isCollidable,1
+tileImageCoords,0,0
+rect,0,0,64,64
+collision_type,world_solid

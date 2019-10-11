@@ -1,0 +1,4 @@
+isCollidable,1
+tileImageCoords,3,0
+rect,20,0,42,64
+collision_type,ladder
